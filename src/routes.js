@@ -11,11 +11,16 @@ import Vuex from './assets/vue/pages/vuex.vue';
 import DataTable from './assets/vue/pg/data-table.vue';
 import DataList from './assets/vue/pg/data-list.vue';
 import DataDetail from './assets/vue/pg/data-detail.vue';
+import DataEdit from './assets/vue/pg/data-edit.vue';
 
 export default [
   {
     path: '/data-detail/:seq',
     component: DataDetail
+  },
+  {
+    path: '/data-edit/:seq',
+    component: DataEdit
   },
   {
     path: '/data-list/',

@@ -4,7 +4,7 @@
     
 
     <f7-block-title>Data Detail</f7-block-title>
-    <f7-block v-if="item" >
+    <f7-block v-if="item" class="eidt-block" >
       <f7-row  >
         <f7-col width="30"  >
             seq:
@@ -85,3 +85,9 @@ export default {
 
 };
 </script>
+
+<style scodped>
+  .eidt-block .row {
+    margin-bottom: 10px;
+  }
+</style>

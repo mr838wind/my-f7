@@ -30,13 +30,14 @@
       <f7-list-item link="/data-list/" title="Data-List" panel-close>
         <f7-icon slot="media" icon="fas fa-list-alt fa-fw" ></f7-icon>
       </f7-list-item> 
-      <f7-list-item link="/data-table/" title="Data-Table" panel-close>
-        <f7-icon slot="media" icon="fas fa-table fa-fw" ></f7-icon>
-      </f7-list-item>
       <!--//custome -->
 
 
       <f7-list-item divider title=">>>>"></f7-list-item>
+
+      <f7-list-item link="/data-table/" title="Data-Table" panel-close>
+        <f7-icon slot="media" icon="fas fa-table fa-fw" ></f7-icon>
+      </f7-list-item>
 
       <!--  -->
       <f7-list-item link="/about/" title="About" panel-close>
