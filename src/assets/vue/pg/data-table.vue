@@ -1,7 +1,10 @@
 <template>
   <f7-page>
     <f7-navbar large title="Data Table Sample"  back-link="Back"></f7-navbar>
+    <!-- 
     <f7-block-title>Data Table Sample</f7-block-title>
+    -->
+    
     <f7-block strong>
       <p>test data table</p>
     </f7-block>

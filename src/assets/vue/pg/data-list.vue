@@ -3,7 +3,7 @@
     <f7-navbar large title="Data List"  back-link="/"></f7-navbar>
     
     <!--  :link=" '/data-detail/' + item.seq " -->
-    <f7-block-title>Data List</f7-block-title>
+    <!-- <f7-block-title>Data List</f7-block-title> -->
 
     <f7-block  >
         <f7-row  >
@@ -39,15 +39,17 @@
   </f7-page>
 </template>
 <script>
-import TodoList from '../data/todo-list.js';
-
-
-//console.log('>> MyTodoList=%o', MyTodoList);
+import _ from 'lodash';
 
 export default {
   components: {},
   data() {
-    return  { myList: TodoList };
+    return {};
+  },
+  computed: {
+    myList() {
+      return this.$store.state.todoList;
+    }
   },
   methods: {
     getPic: function(item) {
@@ -58,8 +60,7 @@ export default {
         return;
       }
       console.log('>> deleting seq=%o',seq);
-      let idx = _.findIndex(TodoList, function(o) { return o.seq == seq; });
-      TodoList.splice(idx,1);
+      this.$store.commit('DEL_ITEM', seq);
     },
     editItem: function(seq) {
       this.$f7router.navigate('/data-edit/'+ seq);

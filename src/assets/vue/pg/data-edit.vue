@@ -3,9 +3,10 @@
     <f7-navbar large title="Data New"  back-link="/" v-if=" isNew " ></f7-navbar>
     <f7-navbar large title="Data Edit"  back-link="/" v-else ></f7-navbar>
     
-
+    <!-- 
     <f7-block-title v-if=" isNew " >Data New</f7-block-title>
     <f7-block-title v-else >Data Edit</f7-block-title>
+    -->
 
     <form class="list" id="edit-form">
       
@@ -18,7 +19,7 @@
           <f7-col width="10"></f7-col>
         </f7-row>
 
-        <f7-row v-if="item.seq == 0" >
+        <f7-row v-if=" ! isNew" >
           <f7-col width="30"  >
               seq:
           </f7-col>
@@ -42,7 +43,7 @@
               <input name="title" type="text" placeholder="contents" v-model="item.contents" >
           </f7-col>
         </f7-row>
-        <f7-row  v-if="item.seq == 0" >
+        <f7-row  v-if=" ! isNew" >
           <f7-col width="30"  >
               crtnDt:
           </f7-col>
@@ -50,7 +51,7 @@
               {{ item.crtnDt | fTime }}
           </f7-col>
         </f7-row>
-        <f7-row v-if="item.seq == 0" >
+        <f7-row v-if=" ! isNew" >
           <f7-col width="30"  >
               image:
           </f7-col>
@@ -71,24 +72,34 @@
   </f7-page>
 </template>
 <script>
-import TodoList from '../data/todo-list.js';
 import _ from 'lodash';
 import moment from 'moment';
-
-//console.log('>> MyTodoList=%o', MyTodoList);
 
 export default {
   components: {},
   data() {
-    const paramSeq = this.$f7route.params.seq;
-    let oriItem = _.find(TodoList, function(o) { return o.seq == paramSeq; });
-    let item = _.extend({}, oriItem);
-
-    if(this.isNew) {
-      item.seq = 0;
+    return  {  };
+  },
+  computed: {
+    todoList() {
+      return this.$store.state.todoList;
+    },
+    paramSeq() {
+      return this.$f7route.params.seq;
+    },
+    isNew: function() {
+      return this.paramSeq == 0;
+    },
+    oriItem() {
+      return this.$store.getters.getItemBySeq(this.paramSeq);
+    },
+    item() {
+      let item = _.extend({}, this.oriItem);
+      if(this.isNew) {
+        item.seq = 0;
+      }
+      return item;
     }
-
-    return  { item: item, oriItem: oriItem };
   },
   methods: {
     getPic: function(item) {
@@ -103,25 +114,23 @@ export default {
       if(this.isNew) {
         this.item.seq = this.getMaxSeq() + 1;
         this.item.crtnDt = moment().format('YYYYMMDDhhmmss');
-        TodoList.push(this.item);
+        this.$store.commit('ADD_ITEM', this.item);
       } else {
-        _.extend(this.oriItem, this.item);
+        this.$store.commit('UPDATE_ITEM', this.item);
       }
+
+      this.$f7router.back();
+
     },
     getMaxSeq: function() {
       var result = 0;
-      _.forEach(TodoList, function(item, idx) {
+      _.forEach(this.todoList, function(item, idx) {
          if(item.seq > result) {
            result = item.seq;
          }
       });
       console.log('>> getMaxSeq=%o', result);
       return result;
-    }
-  },
-  computed: {
-    isNew: function() {
-      return this.$f7route.params.seq == 0;
     }
   },
   mounted() {

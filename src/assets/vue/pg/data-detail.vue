@@ -2,8 +2,10 @@
   <f7-page>
     <f7-navbar large title="Data Detail"  back-link="/"></f7-navbar>
     
-
+    <!--
     <f7-block-title>Data Detail</f7-block-title>
+    -->
+
     <f7-block v-if="item" class="eidt-block" >
       <f7-row  >
         <f7-col width="30"  >
@@ -57,22 +59,19 @@
   </f7-page>
 </template>
 <script>
-import TodoList from '../data/todo-list.js';
-import _ from 'lodash';
+//import _ from 'lodash';
 
-//console.log('>> MyTodoList=%o', MyTodoList);
 
 export default {
   components: {},
   data() {
-    const seq = this.$f7route.params.seq;
-    let item = _.find(TodoList, function(o) { return o.seq == seq; });
-
-    //console.log('>> TodoList=%o', TodoList );
-    //console.log('>> seq=%o', seq );
-    //console.log('>> item=%o', item );
-
-    return  { item: item };
+    return  { };
+  },
+  computed: {
+    item() {
+      const seq = this.$f7route.params.seq;
+      return this.$store.getters.getItemBySeq(seq);
+    }
   },
   methods: {
     getPic: function(item) {
