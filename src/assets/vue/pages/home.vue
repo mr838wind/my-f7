@@ -32,14 +32,14 @@
       </f7-list-item> 
       <!--//custome -->
 
-
+      <!--  
       <f7-list-item divider title=">>>>"></f7-list-item>
 
       <f7-list-item link="/data-table/" title="Data-Table" panel-close>
         <f7-icon slot="media" icon="fas fa-table fa-fw" ></f7-icon>
       </f7-list-item>
 
-      <!--  -->
+      
       <f7-list-item link="/about/" title="About" panel-close>
         <f7-icon slot="media" ios="f7:info" md="material:info"></f7-icon>
       </f7-list-item>
@@ -55,9 +55,12 @@
       <f7-list-item link="/vuex/" title="Vuex" panel-close>
         <f7-icon slot="media" icon="fas fa-battery-empty fa-fw"></f7-icon>
       </f7-list-item>
+      -->
      
 
     </f7-list>
+
+    <!-- 
     <f7-list class="searchbar-not-found">
       <f7-list-item title="Nothing found"></f7-list-item>
     </f7-list>
@@ -68,6 +71,8 @@
       <f7-list-item title="Color Themes" link="/color-themes/"></f7-list-item>
       <f7-list-item title="Github" external link="https://github.com/kevinqqnj"></f7-list-item>
     </f7-list>
+    -->
+
   </f7-page>
 </template>
 <script>
