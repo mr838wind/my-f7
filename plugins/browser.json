@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.mr838wind.my.f7"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.mr838wind.my.f7"
     }
   },
   "dependent_plugins": {}
