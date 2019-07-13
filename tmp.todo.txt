@@ -1,0 +1,5 @@
+>> android build: 기능 debug
+
+>> promise방식
+
+>> validation
