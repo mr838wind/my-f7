@@ -107,6 +107,12 @@ export default {
     },
     saveItem: function() {
       console.log('>>save=%o', this.item);
+      
+      //validation
+      if( ! this.validateItem() ) {
+        return;
+      }
+      
       if( ! confirm('저장하시겠습니까?') ) {
         return;
       }
@@ -121,6 +127,26 @@ export default {
 
       this.$f7router.back();
 
+    },
+    validateItem: function() {
+      if( ! this.isNew ) {
+        if( ! this.item.seq ) {
+          alert('seq is null');
+          return false;
+        }
+      }
+
+      if( ! this.item.title ) {
+          alert('title is null');
+          return false;
+      }
+
+      if( ! this.item.contents ) {
+          alert('contents is null');
+          return false;
+      }
+
+      return true;
     },
     getMaxSeq: function() {
       var result = 0;

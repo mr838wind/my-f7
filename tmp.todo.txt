@@ -1,5 +1,8 @@
 >> android build: 기능 debug
 
+>> validation: simple null체크
 >> promise방식
 
->> validation
+
+>> paging, load more
+
