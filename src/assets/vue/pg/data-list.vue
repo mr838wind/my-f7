@@ -69,5 +69,8 @@ export default {
       this.$f7router.navigate('/data-edit/0');
     }
   },
+  mounted() {
+    this.$store.commit('INIT_ITEM');
+  }
 };
 </script>

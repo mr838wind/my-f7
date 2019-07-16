@@ -2,25 +2,26 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 //import todoList from './data/todo-list.js';  //not use. load from db instead.
 import _ from 'lodash';
-import dop from './dbOperation.js';  //db operations
+import dbop from './dbOperation.js';  //db operations
 
 Vue.use(Vuex);
 
+let storeInstance = null;
 
 //=============  [s] db
 //== db execute 
-let db = dop.dbOpen();
+dbop.dbOpen()
+.then( () => {
+  dbop.dbInit();
+});
 
-dop.dbInit(db);
-
-let todoList = dop.dbGetTodoList(db);
 //=============  [e] db
 
 
 export default new Vuex.Store({
   state: {
     user: {},
-    todoList: todoList
+    todoList: [] 
   },
 
   getters: {
@@ -42,10 +43,18 @@ export default new Vuex.Store({
     USER_LOGGED (state, user) {
       state.user = user;
     },
+    INIT_ITEM(state) {
+      dbop.dbGetTodoList()
+      .then(function(result) {
+        console.log('>>> init_item: result=%o', result);
+        state.todoList = [];
+        state.todoList.push(...result);
+      });
+    },
     DEL_ITEM(state, seq) {
       let idx = this.getters.getItemIndexBySeq(seq);
       state.todoList.splice(idx,1);
-      dop.dbDelItem(db, seq);
+      dbop.dbDelItem(seq);
     },
     UPDATE_ITEM(state, item) {
       if( ! item.seq ) {
@@ -53,11 +62,11 @@ export default new Vuex.Store({
       }
       let oriItem = this.getters.getItemBySeq(item.seq);
       _.extend(oriItem, item);
-      dop.dbUpdateItem(db, item);
+      dbop.dbUpdateItem(item);
     },
     ADD_ITEM(state, item) {
       state.todoList.push(item);
-      dop.dbAddItem(db, item);
+      dbop.dbAddItem(item);
     }
   },
 });
