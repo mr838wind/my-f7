@@ -4,7 +4,7 @@
       <f7-nav-left>
         <f7-link class="panel-open"  icon="fas fa-bars"></f7-link>
       </f7-nav-left>
-      <f7-nav-title>Framework7-Vue</f7-nav-title> 
+      <f7-nav-title>mr838wind sample</f7-nav-title> 
       <f7-nav-right>
         <f7-link
           class="searchbar-enable"
@@ -19,7 +19,7 @@
         expandable
       ></f7-searchbar>
     </f7-navbar>
-    <f7-block-title>Introduction test</f7-block-title>
+    <f7-block-title>Framework7-Vue</f7-block-title>
     <f7-block inner>
       <p>This is template for Framework7 v4, Vue and Phonegap.</p>
     </f7-block>

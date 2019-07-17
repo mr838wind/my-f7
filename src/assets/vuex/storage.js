@@ -6,15 +6,6 @@ import dbop from './dbOperation.js';  //db operations
 
 Vue.use(Vuex);
 
-//=============  [s] db
-//== db execute 
-/*
-dbop.dbOpen()
-.then( () => {
-  dbop.dbInit();
-});
-*/
-//=============  [e] db
 
 
 export default new Vuex.Store({

@@ -24,8 +24,8 @@
         </f7-row>
     </f7-block>
 
-    <f7-list media-list>
-      <f7-list-item  v-for="(item) in myList" :key="item.seq"
+    <f7-list media-list v-if=" myList != null && myList.length > 0 " >
+      <f7-list-item   v-for="(item) in myList" :key="item.seq"
         title=""
         after=""
         :subtitle="item.crtnDt | fTime"
@@ -43,6 +43,9 @@
           <f7-link  icon="fas fa-trash-alt" @click="deleteItem(item.seq)"  ></f7-link>
         </span>
       </f7-list-item>
+    </f7-list>
+    <f7-list media-list v-else > 
+        <f7-list-item title="no results."></f7-list-item> 
     </f7-list>
 
   </f7-page>
