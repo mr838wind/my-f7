@@ -13,9 +13,16 @@ export default {
   db: null,
   helper: null,
 
+  //
+  dbIsOpened: function() {
+    return this.db != null;
+  },
+
   // my db open: not use
   dbOpen: function() {
-
+    console.log('>> db: dbOpen Start.');
+    console.log('>> db: window.cordova.platformId= ' + window.cordova.platformId);
+    console.log('>> db: window.sqlitePlugin= ' + window.sqlitePlugin);
     let db = null;
     if (window.cordova.platformId === 'browser') {
       db = window.openDatabase('TodoDb.db', '1.0', 'Data', 5*1024*1024);

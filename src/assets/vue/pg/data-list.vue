@@ -5,6 +5,15 @@
     <!--  :link=" '/data-detail/' + item.seq " -->
     <!-- <f7-block-title>Data List</f7-block-title> -->
 
+    <f7-block hidden >
+        <f7-row  >
+           <f7-col width="10" ></f7-col>
+          <f7-col width="80"  >
+              <f7-button round fill @click="openDB()" >Open DB</f7-button> 
+          </f7-col>
+          <f7-col width="10"></f7-col>
+        </f7-row>
+    </f7-block>
     <f7-block  >
         <f7-row  >
            <f7-col width="10" ></f7-col>
@@ -52,6 +61,9 @@ export default {
     }
   },
   methods: {
+    openDB() {
+      this.$store.commit('OPEN_DB');
+    },
     getPic: function(item) {
       return 'https://cdn.framework7.io/placeholder/people-160x160-' + (item.seq % 10) + '.jpg';
     },
@@ -70,7 +82,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('INIT_ITEM');
+    this.openDB();
   }
 };
 </script>

@@ -6,15 +6,14 @@ import dbop from './dbOperation.js';  //db operations
 
 Vue.use(Vuex);
 
-let storeInstance = null;
-
 //=============  [s] db
 //== db execute 
+/*
 dbop.dbOpen()
 .then( () => {
   dbop.dbInit();
 });
-
+*/
 //=============  [e] db
 
 
@@ -43,6 +42,20 @@ export default new Vuex.Store({
     USER_LOGGED (state, user) {
       state.user = user;
     },
+    OPEN_DB(state) {
+      dbop.dbOpen()
+      .then( () => {
+        return dbop.dbInit();
+      })
+      .then( () => {
+        return dbop.dbGetTodoList();
+      }).then(function(result) {
+        console.log('>>> init_item: result=%o', result);
+        state.todoList = [];
+        state.todoList.push(...result);
+      });
+    },
+    // not use
     INIT_ITEM(state) {
       dbop.dbGetTodoList()
       .then(function(result) {
