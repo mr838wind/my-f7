@@ -1,7 +1,0 @@
->> android build: 기능 debug
-
->> promise방식
-
-
->> paging, load more
-

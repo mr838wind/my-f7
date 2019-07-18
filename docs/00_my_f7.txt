@@ -1,0 +1,51 @@
+-------------------- kill live reload
+//webpack dev server shutdown:  작업관리자 nodejs server script 
+netstat -ano | grep LISTENING | grep :8081 | awk '{print $5}'
+netstat -ano | grep LISTENING | grep :8081 | awk '{print $5}' | xargs kill -9 
+f7_pid
+
+>>windows:
+netstat -aon | findstr :8081 | findstr LISTENING
+taskkill /F /PID 3312
+
+-------------------- start emulator
+### setting
+##ANDROID_SDK_ROOT=C:\Users\windfall\AppData\Local\Android\Sdk
+
+## start emulator for git
+/c/Users/windfall/AppData/Local/Android/Sdk/emulator/emulator -avd Pixel_2_API_28
+$MY_ANDROID_SDK/emulator/emulator -avd Pixel_2_API_28
+
+-------------------- check log:
+adb logcat chromium:I *:S
+-- for usb device
+adb -d logcat chromium:I *:S
+
+
+
+------------ create: 
+cordova create my-f7 com.mr838wind.my.f7 myF7 --template git://github.com/caiobiodere/cordova-template-framework7-vue-webpack.git#master
+
+appId: com.mr838wind.my.f7
+
+------------ page stucture:
+app
+	statusbar
+	panel
+		view
+			page
+				navbar
+				block
+------------------
+>>[t]sqlite : android debug
+return Promise.resolve();
+return Promise.reject();
+
+
+----------
+>> back-end nodeJs ?
+>> back button plugin ? maybe can use pushState property
+
+
+----------
+>> 실제 project 방향정함
